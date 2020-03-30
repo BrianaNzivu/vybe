@@ -7,6 +7,19 @@
     tools:context=".VisionBoardEnt"
     android:background="@drawable/visionentback">
 
+    <Spinner
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.141">
+
+    </Spinner>
+
     <EditText
         android:id="@+id/vCategory"
         android:layout_width="346dp"
@@ -17,16 +30,16 @@
         android:layout_marginRight="30dp"
         android:background="@drawable/edittext"
         android:drawableLeft="@drawable/cartegory"
-        android:paddingLeft="10dp"
-        android:textSize="18dp"
         android:drawablePadding="8dp"
         android:hint="Category"
+        android:paddingLeft="10dp"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.149" />
+        app:layout_constraintVertical_bias="0.663" />
 
     <EditText
         android:id="@+id/vTitle"
@@ -37,22 +50,22 @@
         android:layout_marginEnd="33dp"
         android:layout_marginRight="33dp"
         android:background="@drawable/edittext"
-        android:hint="Title"
         android:drawableLeft="@drawable/ic_title_black_24dp"
+        android:drawablePadding="8dp"
+        android:hint="Title"
         android:paddingLeft="10dp"
         android:textSize="18dp"
-        android:drawablePadding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.257" />
+        app:layout_constraintVertical_bias="0.759" />
 
     <TextView
         android:id="@+id/vDate"
-        android:layout_width="206dp"
-        android:layout_height="34dp"
+        android:layout_width="346dp"
+        android:layout_height="29dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="33dp"
@@ -61,21 +74,21 @@
         android:drawableLeft="@drawable/ic_timelapse_black_24dp"
         android:drawablePadding="8dp"
         android:ems="10"
+        android:hint="Set Due Date"
         android:inputType="date"
         android:paddingLeft="10dp"
-        android:text="Set Due Date"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.371" />
+        app:layout_constraintVertical_bias="0.616" />
 
     <EditText
         android:id="@+id/vDescription"
         android:layout_width="346dp"
-        android:layout_height="254dp"
+        android:layout_height="281dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginEnd="33dp"
@@ -83,13 +96,13 @@
         android:background="@drawable/edittext"
         android:hint="Description"
         android:paddingLeft="20dp"
-        android:paddingBottom="190dp"
+        android:paddingBottom="220dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/vButton"

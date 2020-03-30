@@ -3,27 +3,34 @@ package com.example.vybe;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.DatePicker;
-import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class VisionBoardEnt extends AppCompatActivity {
+
     private static TextView DateEdit;
+    private ArrayList<VisionBoardCategory> Categories;
+    private CategoriesAdapter mAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vision_board_ent);
+
+
         DateEdit = (TextView) findViewById(R.id.vDate);
         DateEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,7 +38,42 @@ public class VisionBoardEnt extends AppCompatActivity {
                 showTruitonDatePickerDialog(v);
             }
         });
+
+
+            initList();
+
+        Log.d("Spinner" ,"Spinner activated");
+            Spinner spinnerCategories = findViewById(R.id.category);
+
+            mAdapter = new CategoriesAdapter(this, Categories);
+            spinnerCategories.setAdapter(mAdapter);
+
+            spinnerCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+            {
+
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    VisionBoardCategory clickedItem = (VisionBoardCategory) parent.getItemAtPosition(position);
+                    String clickedmCategories = clickedItem.mCategories();
+                    Toast.makeText(VisionBoardEnt.this, clickedmCategories + " selected", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+        Log.d("Dropdown" ,"Dropdown activated");
     }
+
+        private void initList() {
+            Categories = new ArrayList<>();
+            Categories.add(new VisionBoardCategory("India", R.drawable.dpg));
+            Categories.add(new VisionBoardCategory("China", R.drawable.hpg));
+            Categories.add(new VisionBoardCategory("USA", R.drawable.jpg));
+            Categories.add(new VisionBoardCategory("Germany", R.drawable.vpg));
+        }
+
 
     public void showTruitonDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
@@ -58,31 +100,4 @@ public class VisionBoardEnt extends AppCompatActivity {
             DateEdit.setText(day + "/" + (month + 1) + "/" + year);
         }
     }
-//
-//    public void showTruitonTimePickerDialog(View v) {
-//        DialogFragment newFragment = new TimePickerFragment();
-//        newFragment.show(getSupportFragmentManager(), "timePicker");
-//    }
-//
-//    public static class TimePickerFragment extends DialogFragment implements
-//            TimePickerDialog.OnTimeSetListener {
-//
-//        @Override
-//        public Dialog onCreateDialog(Bundle savedInstanceState) {
-//            // Use the current time as the default values for the picker
-//            final Calendar c = Calendar.getInstance();
-//            int hour = c.get(Calendar.HOUR_OF_DAY);
-//            int minute = c.get(Calendar.MINUTE);
-//
-//            // Create a new instance of TimePickerDialog and return it
-//            return new TimePickerDialog(getActivity(), this, hour, minute,
-//                    DateFormat.is24HourFormat(getActivity()));
-//        }
-//
-//        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//            // Do something with the time chosen by the user
-//            DateEdit.setText(DateEdit.getText() + " -" + hourOfDay + ":" + minute);
-//        }
-
-
-    }
+}
