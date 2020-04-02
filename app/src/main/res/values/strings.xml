@@ -1,7 +1,21 @@
 <resources>
+
     <string name="app_name">Vybe</string>
     <string name="title_activity_home">Home</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string-array name="list">
+        <item>Select Category</item>
+        <item>Wealth</item>
+        <item>Relationship</item>
+        <item>Family</item>
+        <item>Health</item>
+        <item>Education</item>
+        <item>Career</item>
+        <item>Spiritual</item>
+        <item>Personal Development</item>
+    </string-array>
+
 </resources>

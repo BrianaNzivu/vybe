@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,14 +22,15 @@ import java.util.Calendar;
 public class VisionBoardEnt extends AppCompatActivity {
 
     private static TextView DateEdit;
-    private ArrayList<VisionBoardCategory> Categories;
-    private CategoriesAdapter mAdapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vision_board_ent);
+
+        Spinner spinner=findViewById(R.id.spinner);
+
 
 
         DateEdit = (TextView) findViewById(R.id.vDate);
@@ -38,43 +40,7 @@ public class VisionBoardEnt extends AppCompatActivity {
                 showTruitonDatePickerDialog(v);
             }
         });
-
-
-            initList();
-
-        Log.d("Spinner" ,"Spinner activated");
-            Spinner spinnerCategories = findViewById(R.id.category);
-
-            mAdapter = new CategoriesAdapter(this, Categories);
-            spinnerCategories.setAdapter(mAdapter);
-
-            spinnerCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-            {
-
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    VisionBoardCategory clickedItem = (VisionBoardCategory) parent.getItemAtPosition(position);
-                    String clickedmCategories = clickedItem.mCategories();
-                    Toast.makeText(VisionBoardEnt.this, clickedmCategories + " selected", Toast.LENGTH_SHORT).show();
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
-        Log.d("Dropdown" ,"Dropdown activated");
     }
-
-        private void initList() {
-            Categories = new ArrayList<>();
-            Categories.add(new VisionBoardCategory("India", R.drawable.dpg));
-            Categories.add(new VisionBoardCategory("China", R.drawable.hpg));
-            Categories.add(new VisionBoardCategory("USA", R.drawable.jpg));
-            Categories.add(new VisionBoardCategory("Germany", R.drawable.vpg));
-        }
-
-
     public void showTruitonDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
