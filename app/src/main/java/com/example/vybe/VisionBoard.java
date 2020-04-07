@@ -20,6 +20,7 @@ public class VisionBoard extends AppCompatActivity {
         cVision =(Button) findViewById (R.id.bVisionOne);
         vback=(ImageView) findViewById(R.id.hVison);
 
+
         cVision.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
