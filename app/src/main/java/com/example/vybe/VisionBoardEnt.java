@@ -51,10 +51,6 @@ public class VisionBoardEnt extends AppCompatActivity {
         mCategories = (Spinner) findViewById(R.id.spinner);
         mButton = (Button) findViewById(R.id.vButton);
 
-        Spinner spinner = (Spinner)findViewById(R.id.spinner);
-        String text = spinner.getSelectedItem().toString();
-
-
         DateEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +62,7 @@ public class VisionBoardEnt extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myCategory = mCategories.toString();
+                myCategory = mCategories.getSelectedItem().toString();
                 Title = mTitle.getText().toString();
                 Date = DateEdit.toString();
                 Description = mDescription.getText().toString();
@@ -75,11 +71,11 @@ public class VisionBoardEnt extends AppCompatActivity {
 
                 Intent intent = new Intent(VisionBoardEnt.this, IntentService.class);
                 intent.setAction(Background.vision);
-                intent.putExtra("vision", (Parcelable) vision);
+                intent.putExtra("Vision", (Parcelable) vision);
 
                 Log.d("vision","Added vision to Firebase");
 
-                startActivity(intent);
+                startService(intent);
 
             }
         });

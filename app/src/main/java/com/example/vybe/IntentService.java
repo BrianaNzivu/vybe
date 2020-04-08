@@ -28,7 +28,7 @@ public class IntentService extends android.app.IntentService {
         if(Background.vision.equals(action))
         {
             VBclass vision = new VBclass();
-            vision = intent.getParcelableExtra("vision");
+            vision = intent.getParcelableExtra("Vision");
             background.writeToFirebase(vision);
         }
     }

@@ -10,7 +10,7 @@ public class Background {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private Context context;
-    public static final String vision = "Add vision";
+    public static final String vision = "Add Vision";
 
     public  Background(Context context)
     {
