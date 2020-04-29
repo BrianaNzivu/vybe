@@ -17,7 +17,8 @@ public class ViewPager extends AppCompatActivity {
 
         mButton=(Button)findViewById(R.id.viewPage);
 
-        mButton.setOnClickListener(new View.OnClickListener() {
+        mButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewPager.this,FirstRegister.class);

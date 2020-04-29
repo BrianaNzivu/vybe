@@ -50,14 +50,14 @@ public class Register extends AppCompatActivity {
         mNameField = (EditText) findViewById(R.id.rname);
         mEmailField = (EditText) findViewById(R.id.remail);
         mPasswordField = (EditText) findViewById(R.id.rpassword);
-        mLogIn= (TextView) findViewById(R.id.rtext);
+        mLogIn = (TextView) findViewById(R.id.rtext);
         mRegisterBtn = (Button) findViewById(R.id.mRegisterBtn);
-        mBack= (ImageView)  findViewById(R.id.rback);
+        mBack = (ImageView) findViewById(R.id.rback);
 
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(Register.this ,ViewPager.class);
+                Intent intent = new Intent(Register.this, ViewPager.class);
                 startActivity(intent);
             }
         });
@@ -65,7 +65,7 @@ public class Register extends AppCompatActivity {
         mLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Register.this ,Login.class );
+                Intent intent = new Intent(Register.this, Login.class);
                 startActivity(intent);
             }
         });
@@ -77,7 +77,6 @@ public class Register extends AppCompatActivity {
                 startRegister();
             }
         });
-
 
 
     }
@@ -121,11 +120,12 @@ public class Register extends AppCompatActivity {
     private long mBackPressed;
 
     @Override
-    public void onBackPressed()
-    {
-        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
-        {
+    public void onBackPressed() {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
             super.onBackPressed();
             return;
+        } else {
+            Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show();
         }
-        else { Toast.makeText(getBaseContext(), "Tap back button in order to exit", Toast.LENGTH_SHORT).show(); }}}
+    }
+}

@@ -45,7 +45,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
         //if the objects getcurrentuser method is not null
         //means user is already logged in
-        if(firebaseAuth.getCurrentUser() != null){
+        if(firebaseAuth.getCurrentUser() != null)
+        {
             //close this activity
             finish();
             //opening profile activity
@@ -68,17 +69,20 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     }
 
     //method for user login
-    private void userLogin(){
+    private void userLogin()
+    {
         String email = editTextEmail.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
 
         //checking if email and passwords are empty
-        if(TextUtils.isEmpty(email)){
+        if(TextUtils.isEmpty(email))
+        {
             Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
             return;
         }
 
-        if(TextUtils.isEmpty(password)){
+        if(TextUtils.isEmpty(password))
+        {
             Toast.makeText(this,"Please enter password",Toast.LENGTH_LONG).show();
             return;
         }
@@ -91,9 +95,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
 
         //logging in the user
         firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
+                {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(@NonNull Task<AuthResult> task)
+                    {
                         progressDialog.dismiss();
                         //if the task is successfull
                         if(task.isSuccessful()){
@@ -107,16 +113,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(View view)
+    {
         if(view == buttonSignIn){
             userLogin();
         }
 
-        if(view ==lback){
+        if(view ==lback)
+        {
             startActivity(new Intent(this,Register.class));
         }
 
-        if(view == textViewSignUp){
+        if(view == textViewSignUp)
+        {
             finish();
             startActivity(new Intent(this, Register.class));
         }

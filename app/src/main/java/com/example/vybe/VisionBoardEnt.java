@@ -75,7 +75,7 @@ public class VisionBoardEnt extends AppCompatActivity {
                 intent.setAction(Background.vision);
                 intent.putExtra("Vision", (Parcelable) vision);
 
-                Log.d("vision","Added vision to Firebase");
+                Log.d("vision", "Added vision to Firebase");
 
                 startService(intent);
 
@@ -109,5 +109,5 @@ public class VisionBoardEnt extends AppCompatActivity {
             DateEdit.setText(day + "/" + (month + 1) + "/" + year);
         }
 
-        }
     }
+}

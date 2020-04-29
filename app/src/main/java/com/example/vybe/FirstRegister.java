@@ -54,9 +54,21 @@ public class FirstRegister extends AppCompatActivity {
 
         googleSignIn = (Button) findViewById(R.id.google);
         FacebookSignIn = (Button) findViewById(R.id.buttonFacebookLogin);
+        EmailSignIn = (Button) findViewById(R.id.firstregemail);
 
         //Initializing Auth
         firebaseAuth = FirebaseAuth.getInstance();
+
+        //Intializing Email SignUp
+        EmailSignIn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(FirstRegister.this,Register.class);
+                startActivity(intent);
+            }
+        });
 
         //Initializing Google SignUp
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -65,47 +77,54 @@ public class FirstRegister extends AppCompatActivity {
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
-;
-        googleSignIn.setOnClickListener(new View.OnClickListener() {
+        googleSignIn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 signIn();
             }
-    private void signIn(){
+
+    private void signIn()
+    {
         Intent signIn = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signIn,RC_SIGN_IN);
     }
         });
 
-        //Initializing Facebook SignUp
-        callbackManager = CallbackManager.Factory.create();
-        FacebookSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginManager.getInstance().logInWithReadPermissions(FirstRegister.this, Arrays.asList("email", "public_profile"));
-                LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        Log.d(TAG, "facebook onSuccess" + loginResult);
-                        handleFacebookAcessToken(loginResult.getAccessToken());
-                    }
+    //Initializing Facebook SignUp
+    callbackManager = CallbackManager.Factory.create();
+    FacebookSignIn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v)
+        {
+            LoginManager.getInstance().logInWithReadPermissions(FirstRegister.this, Arrays.asList("email", "public_profile"));
+            LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>()
+            {
+                @Override
+                public void onSuccess(LoginResult loginResult)
+                {
+                    Log.d(TAG, "facebook onSuccess" + loginResult);
+                    handleFacebookAcessToken(loginResult.getAccessToken());
+                }
 
-                    @Override
-                    public void onCancel() {
-                        Log.d(TAG,"facebook onCancel");
+                @Override
+                public void onCancel()
+                {
+                    Log.d(TAG,"facebook onCancel");
 
-                    }
+                }
 
-                    @Override
-                    public void onError(FacebookException error) {
-                        Log.d(TAG,"facebook on error" + error);
+                @Override
+                public void onError(FacebookException error)
+                {
+                    Log.d(TAG,"facebook on error" + error);
 
-                    }
-                });
-            }
-        });
+                }
+            });
+        }
+    });
 
-    }
+}
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
@@ -122,15 +141,19 @@ public class FirstRegister extends AppCompatActivity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void handleFacebookAcessToken(AccessToken token) {
+    private void handleFacebookAcessToken(AccessToken token)
+    {
         Log.d(TAG, "handlefacebookaccesstoken" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
+                {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+                    public void onComplete(@NonNull Task<AuthResult> task)
+                    {
+                        if (task.isSuccessful())
+                        {
                             //If Sign Up is succesful update the UI.
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -143,7 +166,9 @@ public class FirstRegister extends AppCompatActivity {
                     }
                 });
     }
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask){
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask)
+    {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Toast.makeText(FirstRegister.this,"Signed In Successfully",Toast.LENGTH_SHORT).show();
@@ -153,7 +178,8 @@ public class FirstRegister extends AppCompatActivity {
             Toast.makeText(FirstRegister.this,"Sign In Failed",Toast.LENGTH_SHORT).show();
             FirebaseGoogleAuth(null);
 
-            new Handler().postDelayed(new Runnable() {
+            new Handler().postDelayed(new Runnable()
+            {
                 @Override
                 public void run()
                 {
@@ -163,14 +189,20 @@ public class FirstRegister extends AppCompatActivity {
             }, 5000);
         }
     }
-    private void FirebaseGoogleAuth(GoogleSignInAccount account) {
+
+    private void FirebaseGoogleAuth(GoogleSignInAccount account)
+    {
         //check if account is null
-        if (account != null) {
+        if (account != null)
+        {
             AuthCredential authCredential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
-            firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            firebaseAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
+            {
                 @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
+                public void onComplete(@NonNull Task<AuthResult> task)
+                {
+                    if (task.isSuccessful())
+                    {
                         Toast.makeText(FirstRegister.this, "Successful", Toast.LENGTH_SHORT).show();
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         updateUI(user);
@@ -186,9 +218,11 @@ public class FirstRegister extends AppCompatActivity {
         }
     }
 
-    private void updateUI(FirebaseUser fUser) {
+    private void updateUI(FirebaseUser fUser)
+    {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        if (account != null) {
+        if (account != null)
+        {
             String personName = account.getDisplayName();
             String personEmail = account.getEmail();
 
