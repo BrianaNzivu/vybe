@@ -17,9 +17,11 @@ public class Home extends AppCompatActivity {
 
         myVision=(ImageView) findViewById(R.id.hVison);
 
-        myVision.setOnClickListener(new View.OnClickListener() {
+        myVision.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent intent =new Intent(Home.this ,VisionBoard.class);
                 startActivity(intent);
             }

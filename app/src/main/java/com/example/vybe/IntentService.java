@@ -11,7 +11,8 @@ public class IntentService extends android.app.IntentService {
      *
      * @param name Used to name the worker thread, important only for debugging.
      */
-    public IntentService(String name) {
+    public IntentService(String name)
+    {
         super("IntentService");
     }
 
